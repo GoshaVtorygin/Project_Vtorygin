@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">Project_Vtorygin</string>
     <string name="title_activity_maps">Map</string>
-</resources>
+
+   <string name="aprashka_title">Apraksin dvor</string>
+    <string name="fortress_title">Peter-and-Paul Fortress</string>
+    <string name="garden_title">Botanical Garden</string>
+    <string name="kunstkamera_title">Kunstkamera</string>
+    <string name="square_title">Palace Square</string>
+    <string name="theater_title">Mariinsky Theatre</string>-->
+    <string name="union_title">Union bar</string>
+
+    <string name="aprashka_text">This place is place from "Another Petersburg". One of the oldest (XVIII cent.) and the largest shopping complexes in the city. Now surprisingly combines old architecture and dirty shops, where illegal trade is carried out in almost everything that can be imagined</string>
+     <string name="fortress_text">The fortress built by Emperor Peter I on Hare Island, from which the history of St. Petersburg begins. Now there are several museums and a cathedral in the fortress, and as a bonus, you can take a walk on the island’s beach or bastions</string>
+     <string name="garden_text">Founded by Peter I on Aptekarsky Island for the cultivation of medicinal herbs. Now the garden belongs to the botanical institute. In the garden there are countless different plants from around the world, and from time to time it is open to the public</string>
+     <string name="kunstkamera_text">The first museum in Russia, founded by Peter I. Famous for its rich collection of ancient everyday objects of indigenous peoples from around the world, as well as a collection of various anatomical anomalies</string>
+     <string name="square_text">The majour square of Saint-Petersburg. Located in front of the Winter Palace - the main residence of Russian emperors. Almost 50 meters - a monument to the victory of Russia in the war with Napoleon; in the Winter Palace - a museum of huge collections of exhibits of the Stone Age to the end of the XX century</string>
+     <string name="theater_text">Opera and Ballet Theater, one of the leading all over the world. It has two scenes: the first is located in an old building of the XIX century, the second was built in the XXI century - paradoxical - creepy on the outside and very beautiful on the inside</string>
+     <string name="union_text">Cozy club where periodically wonderful concerts are held with high quality sound and slam</string>
+ </resources>

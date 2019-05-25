@@ -2,7 +2,6 @@ package com.example.admin_pc.project_vtorygin;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -16,7 +15,8 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import static com.example.admin_pc.project_vtorygin.TypefaceUtil.*;
+import java.util.HashMap;
+
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -25,7 +25,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overrideFont(getApplicationContext(), "SERIF", "font/lobster.ttf");
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -43,17 +42,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
-    public Bitmap resizeMapIcons(String iconName, int width, int height){
-        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
-        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
-        return resizedBitmap;
-    }
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
+        MarkerOptions markerOpt = new MarkerOptions();
+        InfoAdapter adapter = new InfoAdapter(MapsActivity.this);
+        map.setInfoWindowAdapter(adapter);
+
         CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(new LatLng(59.950115, 30.316371))
+                .target(new LatLng(59.939658, 30.322585))
                 .zoom(13)
                 .bearing(0)
                 .tilt(0)
@@ -61,41 +58,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
         map.animateCamera(cameraUpdate);
 
-        map.addMarker(new MarkerOptions()
-                .position(new LatLng(59.935361, 30.347850))
-                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("union",100,100)))
-                .title("бар Union"));
-        map.addMarker(new MarkerOptions()
-                .position(new LatLng(59.929976, 30.327834))
-                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("aprashka",100,87)))
-                .title("Апраксин двор"));
-        map.addMarker(new MarkerOptions()
-                .position(new LatLng(59.924797, 30.295925))
-                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("theater",100,100)))
-                .title("Мариинский театр"));
-        map.addMarker(new MarkerOptions()
-                .position(new LatLng(59.941955, 30.305922))
-                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("kunstkamera",100,50)))
-                .title("Кунсткамера"));
-        map.addMarker(new MarkerOptions()
-                .position(new LatLng(59.938277, 30.314915))
-                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("square",100,69)))
-                .title("Эрмитаж"));
-        map.addMarker(new MarkerOptions()
-                .position(new LatLng(59.949179, 30.311993))
-                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("fortress",100,69)))
-                .title("Петропавловская крепость"));
-        map.addMarker(new MarkerOptions()
-                .position(new LatLng(59.934036, 30.325602))
-                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("cathedral",100,65)))
-                .title("Казанский собор"));
-        map.addMarker(new MarkerOptions()
-                .position(new LatLng(59.968455, 30.330646))
-                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("garden",100,100)))
-                .title("Ботанический сад"));
-        map.addMarker(new MarkerOptions()
-                .position(new LatLng(59.936904, 30.303517))
-                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("horseman",100,68)))
-                .title("Медный всадник"));
+        markerOpt.position(new LatLng(59.928112, 30.330234))
+                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("aprashka",80,80)))
+                .title(getString(R.string.aprashka_title))
+                .snippet(getString(R.string.aprashka_text));
+        map.addMarker(markerOpt);
+        markerOpt.position(new LatLng(59.949913, 30.312890))
+                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("fortress",80,80)))
+                .title(getString(R.string.fortress_title))
+                .snippet(getString(R.string.fortress_text));
+        map.addMarker(markerOpt);
+        markerOpt.position(new LatLng(59.969756, 30.327196))
+                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("garden",80,80)))
+                .title(getString(R.string.garden_title))
+                .snippet(getString(R.string.garden_text));
+        map.addMarker(markerOpt);
+        markerOpt.position(new LatLng(59.941960, 30.305119))
+                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("kunstkamera",80,80)))
+                .title(getString(R.string.kunstkamera_title))
+                .snippet(getString(R.string.kunstkamera_text));
+        map.addMarker(markerOpt);
+        markerOpt.position(new LatLng(59.939646, 30.316206))
+                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("square",80,80)))
+                .title(getString(R.string.square_title))
+                .snippet(getString(R.string.square_text));
+        map.addMarker(markerOpt);
+        markerOpt.position(new LatLng(59.925222, 30.296075))
+                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("theater",80,80)))
+                .title(getString(R.string.theater_title))
+                .snippet(getString(R.string.theater_text));
+        map.addMarker(markerOpt);
+        markerOpt.position(new LatLng(59.935361, 30.347850))
+                .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("union",80,80)))
+                .title(getString(R.string.union_title))
+                .snippet(getString(R.string.union_text));
+        map.addMarker(markerOpt);
     }
+
+    public Bitmap resizeMapIcons(String iconName, int width, int height){
+        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+        return resizedBitmap;
+    }
+
 }
